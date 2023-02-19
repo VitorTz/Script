@@ -1,3 +1,3 @@
 #!/bin/bash
 
-rm -rf /mnt/TMP/*
+rm -rf /mnt/HD/TMP/*

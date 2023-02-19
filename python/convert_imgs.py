@@ -4,7 +4,6 @@ from PIL import Image
 import sys
 
 
-
 class Error(Exception):
 
     def __init__(self, *args: object) -> None:
@@ -37,7 +36,7 @@ class Globals:
 
 class UserInput:
 
-    def __init__(self, source: Path, suffix1: str, suffix2) -> None:
+    def __init__(self, source: Path, suffix1: str, suffix2: str) -> None:
         self.__source = source
         self.__suffix1 = suffix1
         self.__suffix2 = suffix2
