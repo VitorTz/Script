@@ -1,35 +1,34 @@
 from pytube import YouTube
-from pathlib import Path
+from moviepy.editor import *
+import os
 import sys
 
+""" 
+Baixa um vídeo do youtube, converte em mp3 e salva no destino especificado
+"""
 
-download_path = Path("/mnt/HD/Vídeos")
+def download_video(url, folder):
+    # Cria a pasta se não existir
+    if not os.path.exists(folder):
+        os.makedirs(folder)
 
+    # Baixa o vídeo
+    yt = YouTube(url)
+    video = yt.streams.filter(only_audio=True).first()
+    video.download(folder)
 
-def get_output_path(video: YouTube) -> Path:
-    global download_path
-    path = download_path / video.title
-    return path
+    # Extrai o título do vídeo
+    title = yt.title
 
-
-def download(link):
-    video = YouTube(link)
-    file = video.streams.get_highest_resolution()
-    try:
-        file.download(
-            output_path=get_output_path(video),
-            filename=video.title
-        )
-    except Exception as e:
-        print(f"Não foi possível baixar o vídeo {video.title}. {e}")
-    else:
-        print(f"Download feito com sucesso! -> {video.title}")
-
-
-def main() -> None:
-    link = sys.argv[1]
-    download(link)
-
+    # Converte o vídeo em MP3 e salva na pasta
+    video_path = os.path.join(folder, video.default_filename)
+    mp3_path = os.path.join(folder, title + ".mp3")
+    video_clip = AudioFileClip(video_path)
+    video_clip.write_audiofile(mp3_path)
+    video_clip.close()
+    os.remove(video_path)
 
 if __name__ == "__main__":
-    main()
+    url = sys.argv[1]
+    folder = sys.argv[2]
+    download_video(url, folder)
