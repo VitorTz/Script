@@ -13,10 +13,10 @@ git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
 
+cd ..
 yay -Syu --noconfirm
-cd
 
-yay -S --noconfirm spotify discord visual-studio-code-bin android-studio gimp firefox alacritty ttf-jetbrains-mono tela-circle-icon-theme-dracula aritim-dark-gtk-git
+yay -S --noconfirm spotify discord visual-studio-code-bin android-studio gimp firefox alacritty ttf-jetbrains-mono tela-circle-icon-theme-dracula
 sudo pacman -R firedragon firedragon-extension-plasma-integration octopi kate
 
 mv alacritty.yml ~/.config/alacritty
