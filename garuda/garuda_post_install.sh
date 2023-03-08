@@ -14,7 +14,7 @@ cd yay
 makepkg -si
 cd ..
 
-yay -Syu --noconfirm spotify discord visual-studio-code-bin android-studio gimp firefox alacritty ttf-jetbrains-mono
+yay -Syu --noconfirm spotify stacer discord visual-studio-code-bin android-studio gimp firefox alacritty ttf-jetbrains-mono
 sudo pacman -R firedragon firedragon-extension-plasma-integration octopi kate
 
 mv alacritty.yml ~/.config/alacritty
