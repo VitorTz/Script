@@ -1,7 +1,7 @@
 #!/bin/bash
 
 sudo mkdir /mnt/HD
-sudo mkdir ~/TMP
+sudo mkdir /mnt/HD/TMP
 sudo systemctl enable fstrim.timer
 
 git config --global user.name "VitorTz"
@@ -12,17 +12,18 @@ sudo pacman -S --needed --noconfirm git base-devel
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
-
 cd ..
-yay -Syu --noconfirm
 
-yay -S --noconfirm spotify discord visual-studio-code-bin android-studio gimp firefox alacritty ttf-jetbrains-mono tela-circle-icon-theme-dracula
+yay -Syu --noconfirm spotify discord visual-studio-code-bin android-studio gimp firefox alacritty ttf-jetbrains-mono
 sudo pacman -R firedragon firedragon-extension-plasma-integration octopi kate
 
 mv alacritty.yml ~/.config/alacritty
 
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.2
 mv config.fish ~/.config/fish
+mkdir -p ~/.config/fish/completions; and ln -s ~/.asdf/completions/asdf.fish ~/.config/fish/completions
+
+fish
 
 asdf plugin add java
 asdf plugin add kotlin
